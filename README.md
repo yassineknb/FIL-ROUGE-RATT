@@ -41,6 +41,6 @@ Le projet utilise un **backend Laravel 10 (API)** et un **frontend React** afin 
 
 ### Frontend
 - **React** (React Router, Hooks, Context/State)
-- **Fetch (communication API)
+- **Axios** (communication API)
 - **TailwindCSS / CSS** (UI)
 
