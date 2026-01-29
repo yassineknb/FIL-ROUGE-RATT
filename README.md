@@ -44,3 +44,6 @@ Le projet utilise un **backend Laravel 10 (API)** et un **frontend React** afin 
 - **Axios** (communication API)
 - **TailwindCSS / CSS** (UI)
 
+---
+### Figma : https://www.figma.com/design/rIQu7axFMAGuL2CFFc9zMq/Untitled?node-id=2-14&t=wzfAvA2AAbCMcnOY-1
+
