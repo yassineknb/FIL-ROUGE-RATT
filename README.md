@@ -46,4 +46,6 @@ Le projet utilise un **backend Laravel 10 (API)** et un **frontend React** afin 
 
 ---
 ### Figma : https://www.figma.com/design/rIQu7axFMAGuL2CFFc9zMq/Untitled?node-id=2-14&t=wzfAvA2AAbCMcnOY-1
+### UML : https://lucid.app/lucidchart/0c726de0-204a-4510-aaf9-838c90da26ba/edit?viewport_loc=-643%2C-2595%2C2115%2C2818%2CiHRnoflaPjE_&invitationId=inv_22a6f43a-f790-4a34-ae9c-4973169ff0a0
+### PRESENTATION : https://www.canva.com/design/DAG9NbrL9d4/OIyJsDrNMx66NidC1TcsAQ/edit?utm_content=DAG9NbrL9d4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
