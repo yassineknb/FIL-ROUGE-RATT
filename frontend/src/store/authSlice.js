@@ -28,10 +28,9 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await authApi.register(userData);
       // Backend returns { success: true, data: { user, token }, message: ... }
-      if (response.data.data && response.data.data.token) {
-        const { token, user } = response.data.data;
-        localStorage.setItem('token', token);
-        return { token, user };
+      if (response.data.data) {
+        // Do not auto-login: Just return user data for confirmation if needed
+        return response.data;
       }
       return response.data; 
     } catch (error) {
@@ -102,10 +101,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        if(action.payload.token) {
-            state.token = action.payload.token;
-            state.user = action.payload.user;
-        }
+        // Do not set token or user. User must login manually.
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;

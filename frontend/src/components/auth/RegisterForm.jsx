@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../store/authSlice';
 import AuthForm from './AuthForm';
@@ -8,6 +9,7 @@ import Alert from '../ui/Alert';
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { loading, error } = useSelector((state) => state.auth);
 
     const [formData, setFormData] = useState({
@@ -24,7 +26,10 @@ const RegisterForm = () => {
 
         const resultAction = await dispatch(registerUser(formData));
 
-        if (!registerUser.fulfilled.match(resultAction)) {
+        if (registerUser.fulfilled.match(resultAction)) {
+            // Redirect to login on success
+            navigate('/login');
+        } else {
             if (resultAction.payload) {
                 if (resultAction.payload.errors) {
                     setLocalError(Object.values(resultAction.payload.errors).flat().join(' '));

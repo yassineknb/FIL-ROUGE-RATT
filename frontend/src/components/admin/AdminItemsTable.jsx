@@ -4,8 +4,6 @@ import Badge from '../ui/Badge';
 const AdminItemsTable = ({ items, onUpdateStatus, onDelete }) => {
     // Local state to manage status changes before saving
     // Format: { itemId: 'newStatus' }
-    // Local state to manage status changes before saving
-    // Format: { itemId: 'newStatus' }
     const [pendingChanges, setPendingChanges] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -127,7 +125,7 @@ const AdminItemsTable = ({ items, onUpdateStatus, onDelete }) => {
             {/* Image Modal */}
             {selectedImage && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
                     onClick={() => setSelectedImage(null)}
                 >
                     <div className="relative max-w-4xl max-h-[90vh] rounded-lg overflow-hidden shadow-2xl">
