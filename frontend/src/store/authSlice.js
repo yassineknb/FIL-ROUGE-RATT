@@ -47,7 +47,7 @@ export const fetchUser = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await authApi.me();
-            return response.data;
+            return response.data.data;
         } catch (error) {
             localStorage.removeItem('token');
             return rejectWithValue(error.response.data);
