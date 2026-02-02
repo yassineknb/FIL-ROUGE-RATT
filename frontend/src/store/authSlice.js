@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authApi from '../services/authApi';
 
-// Async Thunks
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await authApi.login({ email, password });
-      // Backend returns { success: true, data: { user, token }, message: ... }
+
       const { token, user } = response.data.data;
       
       localStorage.setItem('token', token);
@@ -27,9 +27,9 @@ export const registerUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await authApi.register(userData);
-      // Backend returns { success: true, data: { user, token }, message: ... }
+
       if (response.data.data) {
-        // Do not auto-login: Just return user data for confirmation if needed
+
         return response.data;
       }
       return response.data; 
@@ -80,7 +80,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Login
+
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -92,22 +92,22 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload; // Contains error data from API
+        state.error = action.payload;
       })
-      // Register
+
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        // Do not set token or user. User must login manually.
+
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      // Fetch User
+
       .addCase(fetchUser.fulfilled, (state, action) => {
           state.user = action.payload;
       })
@@ -115,7 +115,7 @@ const authSlice = createSlice({
           state.user = null;
           state.token = null;
       })
-      // Logout
+
       .addCase(logoutUser.fulfilled, (state) => {
           state.user = null;
           state.token = null;

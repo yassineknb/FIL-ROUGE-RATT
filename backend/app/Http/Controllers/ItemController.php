@@ -10,27 +10,19 @@ use Illuminate\Support\Facades\Gate;
 
 class ItemController extends Controller
 {
-    /**
-     * Public index with filters and pagination.
-     */
     public function index(Request $request)
     {
         $query = Item::query();
 
-        // Filter by type (exact)
         if ($request->filled('type')) {
             $query->where('type', $request->type);
         }
 
-        // Filter by location (partial)
         if ($request->filled('location')) {
             $query->where('location', 'like', '%' . $request->location . '%');
         }
 
-        // Default: only pending/resolved? Or all? User brief says "list of items".
-        // Assuming we show all items except maybe archived, or just all.
-        // Brief doesn't specify exclusion, but usually we filter by status too.
-        // For now, returning all (with filters).
+
 
         $items = $query->latest()->paginate(9);
 
@@ -41,9 +33,6 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * Public show item.
-     */
     public function show($id)
     {
         $item = Item::find($id);
@@ -59,9 +48,6 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * Store item (Auth).
-     */
     public function store(StoreItemRequest $request)
     {
         $data = $request->validated();
@@ -83,9 +69,6 @@ class ItemController extends Controller
         ], 201);
     }
 
-    /**
-     * Update item (Auth: Owner or Admin).
-     */
     public function update(UpdateItemRequest $request, Item $item)
     {
         $this->authorize('update', $item);
@@ -99,16 +82,12 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * Destroy item (Auth: Owner or Admin).
-     */
     public function destroy(Item $item)
     {
         $this->authorize('delete', $item);
 
         if ($item->image && str_contains($item->image, 'cloudinary')) {
-            // Optional: Implement Cloudinary image deletion logic here if needed/desired.
-            // For now, removing the database record is sufficient.
+            // Cloudinary deletion logic if needed
         }
 
         $item->delete();
@@ -119,9 +98,6 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * My Items (Auth).
-     */
     public function myItems(Request $request)
     {
         $items = $request->user()->items()->latest()->paginate(15);

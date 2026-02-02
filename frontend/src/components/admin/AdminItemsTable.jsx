@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Badge from '../ui/Badge';
 
 const AdminItemsTable = ({ items, onUpdateStatus, onDelete }) => {
-    // Local state to manage status changes before saving
-    // Format: { itemId: 'newStatus' }
+
     const [pendingChanges, setPendingChanges] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -15,7 +14,7 @@ const AdminItemsTable = ({ items, onUpdateStatus, onDelete }) => {
         const newStatus = pendingChanges[id];
         if (newStatus) {
             onUpdateStatus(id, newStatus);
-            // Clear pending change after save (optimistic or wait for parent refresh)
+
             const newChanges = { ...pendingChanges };
             delete newChanges[id];
             setPendingChanges(newChanges);
@@ -78,7 +77,7 @@ const AdminItemsTable = ({ items, onUpdateStatus, onDelete }) => {
                                     <td className="px-6 py-4 text-xs">{item.location}</td>
                                     <td className="px-6 py-4 text-xs">{item.date}</td>
                                     <td className="px-6 py-4">
-                                        {/* Status Dropdown */}
+
                                         <select
                                             value={currentStatus}
                                             onChange={(e) => handleStatusChange(item.id, e.target.value)}

@@ -13,17 +13,14 @@ class ItemAdminController extends Controller
     {
         $query = Item::with('user');
 
-        // Filter by Type
         if ($request->filled('type')) {
             $query->where('type', $request->type);
         }
 
-        // Filter by Status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        // Search (Title or Location)
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {

@@ -11,7 +11,7 @@ const AdminFilter = ({ onFilter, className = "" }) => {
         setFilters({ ...filters, [e.target.name]: e.target.value });
     };
 
-    // Debounced Auto-Search
+
     useEffect(() => {
         const timer = setTimeout(() => {
             onFilter(filters);
@@ -27,7 +27,7 @@ const AdminFilter = ({ onFilter, className = "" }) => {
     return (
         <div className={`bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row gap-4 items-end ${className}`}>
 
-            {/* Type Filter */}
+
             <div className="w-full md:flex-1">
                 <label htmlFor="type" className="block text-xs font-medium text-gray-500 mb-1">Type</label>
                 <select
@@ -43,7 +43,7 @@ const AdminFilter = ({ onFilter, className = "" }) => {
                 </select>
             </div>
 
-            {/* Status Filter */}
+
             <div className="w-full md:flex-1">
                 <label htmlFor="status" className="block text-xs font-medium text-gray-500 mb-1">Statut</label>
                 <select
@@ -59,7 +59,7 @@ const AdminFilter = ({ onFilter, className = "" }) => {
                 </select>
             </div>
 
-            {/* Search Filter */}
+
             <div className="w-full md:flex-[2]">
                 <label htmlFor="search" className="block text-xs font-medium text-gray-500 mb-1">Recherche (lieu / titre)</label>
                 <input
@@ -73,7 +73,7 @@ const AdminFilter = ({ onFilter, className = "" }) => {
                 />
             </div>
 
-            {/* Actions */}
+
             <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
                 <button
                     onClick={handleReset}
